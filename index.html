@@ -72,7 +72,8 @@
 				.append('rect')
 				.attr('height', 10)
 				.attr('width', 10)
-				.attr('fill', '#276fbf')
+				.attr('fill', '#304D6D')
+				.style("stroke", "none")
 
 					.attr('x', function(d) { return mapXScale(d[0])})
 					.attr('y', function(d) { return mapYScale(d[1])})
@@ -104,8 +105,8 @@
 				.attr('r', 2)
 				.attr("id", "mapcircles")
 				.attr('fill', function(d, i) {
-              	if (d[3]==1) {return 'blue';}
-              	else if (d[3]==0) {return 'red';}
+              	if (d[3]==1) {return '#840032';}
+              	else if (d[3]==0) {return '#E59500';}
             	})
 				.attr('cx', function(d) { return mapXScale(d[0])})
 				.attr('cy', function(d) { return mapYScale(d[1])})
@@ -206,7 +207,7 @@
 						})
 					.attr("width", w/dataset.length - barPadding)
 					.attr("height", d => (h - padding) - yScale(d.deaths))
-					.attr("fill", "teal")
+					.attr("fill", "#136F63")
 				
 					  // Mouse Hover Actions
 					.on("mouseover", function(d, i) {
@@ -223,7 +224,7 @@
 						d3.selectAll('#mapcircles').style("opacity", 1);
           				d3.select(this).transition()
                			.duration('50')
-               			.attr('fill', 'teal')});  
+               			.attr('fill', '#136F63')});  
 
 					// Add the x Axis
 					svg2.append("g")
@@ -251,55 +252,65 @@
 					.style("text-anchor", "middle")
 					.text("Number of Deaths");
 
-
 					// Map Key Components
+					// Map Key Box
+					svg2.append("rect")
+					.attr("height", 130)
+					.attr("width", 130)
+					.attr("x", 288)
+					.attr("y", 365)
+					.style("stroke", "#CCCCCC")
+					.style("fill", "none")
+					.style("stroke-width", 1.5)
+					.attr("rx", 5);
 					// "Map Key Text"
 					svg2.append("text")
 					.attr("x", 325)
-					.attr("y", 375)
+					.attr("y", 390)
 					.text("Map Key");
 					// "Male Death" Text
 					svg2.append("text")
 					.attr("x", 325)
-					.attr("y", 400)
+					.attr("y", 415)
 					.text("Male Death");
-					// Red Circle
+					// male Circle
 					svg2.append("circle")
 					.attr("cx", 310)
-					.attr("cy", 395)
+					.attr("cy", 410)
 					.attr('r', 10)
-					.attr('fill', 'red')
+					.attr('fill', '#E59500')
 					// "Female Death" Text
 					svg2.append("text")
 					.attr("x", 325)
-					.attr("y", 425)
+					.attr("y", 440)
 					.text("Female Death");
-					// Blue Circle
+					// female Circle
 					svg2.append("circle")
 					.attr("cx", 310)
-					.attr("cy", 420)
+					.attr("cy", 435)
 					.attr('r', 10)
-					.attr('fill', 'blue')
+					.attr('fill', '#840032')
 					// "Water Pump" Text
 					svg2.append("text")
 					.attr("x", 325)
-					.attr("y", 453)
+					.attr("y", 468)
 					.text("Water Pump");
 					// Water Pump Rect
 					svg2.append("rect")
 					.attr('height', 18)
 					.attr('width', 18)
-					.attr('fill', '#276fbf')
+					.attr('fill', '#304D6D')
+					.style("stroke", "none")
 					.attr("x", 301.5)
-					.attr("y", 440)
+					.attr("y", 455)
 					
 
 					// Create Age Buttons
-						// Age Range 0
+					// Age Range 0
 					svg2.append("rect")
 					.attr('height', 30)
 					.attr('width', 80)
-					.attr('fill', '#6b00a8')
+					.attr('fill', '#999999')
 					.attr("x", 10)
 					.attr("y", 365)
 					.attr("rx", "5")
@@ -322,11 +333,11 @@
 						.filter(function(deathagesex) { return deathagesex[2] != 0})
 						.style("opacity", 0)
 						.append('mapcircles')});
-				//Age Range 1
+					//Age Range 1
 						svg2.append("rect")
 					.attr('height', 30)
 					.attr('width', 80)
-					.attr('fill', '#6b00a8')
+					.attr('fill', '#999999')
 					.attr("x", 10)
 					.attr("y", 398)
 					.attr("rx", "5")
@@ -349,11 +360,11 @@
 						.filter(function(deathagesex) { return deathagesex[2] != 0})
 						.style("opacity", 0)
 						.append('mapcircles')});
-				//Age Range 2
+					//Age Range 2
 						svg2.append("rect")
 					.attr('height', 30)
 					.attr('width', 80)
-					.attr('fill', '#6b00a8')
+					.attr('fill', '#999999')
 					.attr("x", 10)
 					.attr("y", 431)
 					.attr("rx", "5")
@@ -376,11 +387,12 @@
 						.filter(function(deathagesex) { return deathagesex[2] != 2})
 						.style("opacity", 0)
 						.append('mapcircles')});
-						//Age Range 3
-						svg2.append("rect")
+
+					//Age Range 3
+					svg2.append("rect")
 					.attr('height', 30)
 					.attr('width', 80)
-					.attr('fill', '#6b00a8')
+					.attr('fill', '#999999')
 					.attr("x", 100)
 					.attr("y", 365)
 					.attr("rx", "5")
@@ -404,11 +416,11 @@
 						.style("opacity", 0)
 						.append('mapcircles')});
 						
-						//Age Range 4
-						svg2.append("rect")
+					//Age Range 4
+					svg2.append("rect")
 					.attr('height', 30)
 					.attr('width', 80)
-					.attr('fill', '#6b00a8')
+					.attr('fill', '#999999')
 					.attr("x", 100)
 					.attr("y", 398)
 					.attr("rx", "5")
@@ -417,7 +429,7 @@
 						.filter(function(deathagesex) { return deathagesex[2] != 4})
 						.style("opacity", 0)
 						.append('mapcircles')});
-						
+					
 					svg2.selectAll("mytext")
 					.data(dataset)
 					.enter()
@@ -431,12 +443,12 @@
 						.filter(function(deathagesex) { return deathagesex[2] != 4})
 						.style("opacity", 0)
 						.append('mapcircles')});
-					
-								//Age Range 5
-								svg2.append("rect")
+				
+					//Age Range 5
+					svg2.append("rect")
 					.attr('height', 30)
 					.attr('width', 80)
-					.attr('fill', '#6b00a8')
+					.attr('fill', '#999999')
 					.attr("x", 100)
 					.attr("y", 431)
 					.attr("rx", "5")
@@ -445,7 +457,7 @@
 						.filter(function(deathagesex) { return deathagesex[2] != 5})
 						.style("opacity", 0)
 						.append('mapcircles')});
-						
+			
 					svg2.selectAll("mytext")
 					.data(dataset)
 					.enter()
@@ -460,11 +472,11 @@
 						.style("opacity", 0)
 						.append('mapcircles')});
 
-									//Reset
-									svg2.append("rect")
+					//Reset
+					svg2.append("rect")
 					.attr('height', 30)
 					.attr('width', 80)
-					.attr('fill', 'green')
+					.attr('fill', '#1372ec')
 					.attr("x", 55)
 					.attr("y", 466)
 					.attr("rx", "5")
@@ -473,7 +485,7 @@
 						.filter(function(deathagesex) { return deathagesex[2] <= 5})
 						.style("opacity", 1)
 						.append('mapcircles')});
-						
+		
 					svg2.selectAll("mytext")
 					.data(dataset)
 					.enter()
@@ -487,11 +499,8 @@
 						.filter(function(deathagesex) { return deathagesex[2] <= 5})
 						.style("opacity", 1)
 						.append('mapcircles')});
-
 					});	
-					
-			
 	</script>
 
 </body>
-	</html>
+</html>
