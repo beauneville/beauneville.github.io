@@ -126,7 +126,7 @@
             console.log (data);
 			for (var i=0; i<data.length; i++) 
 			{
-				deathagesex.push ([data[i].x, data[i].y, data[i].age, data[i].gender])
+				deathagesex.push ([data[i].x, data[i].y, data[i].age, data[i].gender, data[i].day])
 			}
 
             var svg1 = d3.select('#map') //added #map
@@ -139,12 +139,14 @@
 			svg1.enter()
 				.append('circle')
 				.attr('r', 2)
+				.attr("id", "mapcircles")
 				.attr('fill', function(d, i) {
               	if (d[3]==1) {return 'blue';}
               	else if (d[3]==0) {return 'red';}
             	})
 				.attr('cx', function(d) { return mapXScale(d[0])})
 				.attr('cy', function(d) { return mapYScale(d[1])})
+				console.log(deathagesex)
 			});
 
 		
@@ -203,7 +205,7 @@
 							
 					var w = 500;
 					var h = 350;
-					var barPadding = 3;
+					var barPadding = 0;
 					var padding = 40;
 					var svg = d3.select("g")
 								.append("svg")
@@ -211,10 +213,11 @@
 
 					var parseTime = d3.time.format("%Y").parse;
 
-					var rowConverter = function(d) {
+					var rowConverter = function(dataset) {
 						return {
-							date: parseTime(d.date),
-							deaths: +d.deaths
+							date: parseTime(dataset.date),
+							deaths: +dataset.deaths,
+							day: dataset.day
 						}
 					}
 
@@ -234,7 +237,7 @@
 
 					var xAxis = d3.svg.axis().scale(timelineX);
 					var yAxis = d3.svg.axis().scale(yScale).orient("left");
-
+console.log(dataset)
 					svg2.selectAll("rect")
 					.data(dataset)
 					.enter()
@@ -252,18 +255,23 @@
 					// 	d3.select(this).transition()
               		//  	.duration('50')
               		//  	.attr('fill', 'gray')})
-					
-					.on("mouseover", function(d) {
-						var svg1 = d3.select('#map') //added #map
-							.selectAll('circle')
-							.data(deathagesex)
-							//.filter(function(d2) {return d2.deathday > d.day;})
-							.filter(function(d2) {return d2[3]==1})
+					  
+					.on("mouseover", function(d, i) {
+				
+						d3.selectAll('#mapcircles')
+						//.filter(deathagesex[3]==1);
+						.filter(function(deathagesex) { return deathagesex[4] >= d.day})
+						.style("opacity", 0)
+						// var x=0
+						// x=x+d.deaths
+						.append('mapcircles');
+						
 						d3.select(this).transition()
               		 	.duration('50')
               		 	.attr('fill', 'gray')
 						})
     				.on('mouseout', function (d, i) {
+						d3.selectAll('#mapcircles').style("opacity", 1);
           				d3.select(this).transition()
                			.duration('50')
                			.attr('fill', 'teal')});  
@@ -317,6 +325,7 @@
 					.attr("cy", 395)
 					.attr('r', 10)
 					.attr('fill', 'red')
+					
 
 					svg2.append("text")
 					// .attr("transform", //"rotate(-90)")
@@ -331,6 +340,7 @@
 					.attr("cy", 420)
 					.attr('r', 10)
 					.attr('fill', 'blue')
+					
 
 					svg2.append("text")
 					// .attr("transform", //"rotate(-90)")
