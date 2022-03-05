@@ -279,6 +279,25 @@
 					.attr("cy", 410)
 					.attr('r', 10)
 					.attr('fill', '#E59500')
+					.on("mouseover", function(d, i) {
+						d3.selectAll('#mapcircles')
+						.filter(function(deathagesex) { return deathagesex[3] != 0})
+						.style("opacity", 0)
+						.append('mapcircles');
+						
+						d3.select(this).transition()
+              		 	.duration('50')
+              		 	.attr('fill', '#E59500')
+						   .style("stroke", "black")
+						   .style("stroke-width", 2.5)
+						})
+						.on('mouseout', function (d, i) {
+						d3.selectAll('#mapcircles').style("opacity", 1);
+          				d3.select(this).transition()
+               			.duration('50')
+               			.attr('fill', '#E59500')
+						   .style("stroke", "none")
+						   .style("stroke-width", 0)}); 
 					// "Female Death" Text
 					svg2.append("text")
 					.attr("x", 325)
@@ -290,6 +309,25 @@
 					.attr("cy", 435)
 					.attr('r', 10)
 					.attr('fill', '#840032')
+					.on("mouseover", function(d, i) {
+						d3.selectAll('#mapcircles')
+						.filter(function(deathagesex) { return deathagesex[3] != 1})
+						.style("opacity", 0)
+						.append('mapcircles');
+						
+						d3.select(this).transition()
+              		 	.duration('50')
+              		 	.attr('fill', '#840032')
+						   .style("stroke", "black")
+						   .style("stroke-width", 2.5)
+						})
+						.on('mouseout', function (d, i) {
+						d3.selectAll('#mapcircles').style("opacity", 1);
+          				d3.select(this).transition()
+               			.duration('50')
+               			.attr('fill', '#840032')
+						   .style("stroke", "none")
+						   .style("stroke-width", 0)}); 
 					// "Water Pump" Text
 					svg2.append("text")
 					.attr("x", 325)
@@ -314,7 +352,10 @@
 					.attr("x", 10)
 					.attr("y", 365)
 					.attr("rx", "5")
+					.attr("id", "age0button")
 					.on("click", function(d, i) {
+						d3.selectAll('#age0button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 0})
 						.style("opacity", 0)
@@ -329,6 +370,8 @@
 					.style("fill", "white")
 					.text("0-10 Years")
 					.on("click", function(d, i) {
+						d3.selectAll('#age0button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 0})
 						.style("opacity", 0)
@@ -341,7 +384,10 @@
 					.attr("x", 10)
 					.attr("y", 398)
 					.attr("rx", "5")
+					.attr("id", "age1button")
 					.on("click", function(d, i) {
+						d3.selectAll('#age1button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 0})
 						.style("opacity", 0)
@@ -356,6 +402,8 @@
 					.style("fill", "white")
 					.text("11-20 Years")
 					.on("click", function(d, i) {
+						d3.selectAll('#age1button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 0})
 						.style("opacity", 0)
@@ -368,7 +416,10 @@
 					.attr("x", 10)
 					.attr("y", 431)
 					.attr("rx", "5")
+					.attr("id", "age2button")
 					.on("click", function(d, i) {
+						d3.selectAll('#age2button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 2})
 						.style("opacity", 0)
@@ -383,6 +434,8 @@
 					.style("fill", "white")
 					.text("21-40 Years")
 					.on("click", function(d, i) {
+						d3.selectAll('#age2button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 2})
 						.style("opacity", 0)
@@ -396,7 +449,10 @@
 					.attr("x", 100)
 					.attr("y", 365)
 					.attr("rx", "5")
+					.attr("id", "age3button")
 					.on("click", function(d, i) {
+						d3.selectAll('#age3button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 3})
 						.style("opacity", 0)
@@ -411,6 +467,8 @@
 					.style("fill", "white")
 					.text("41-60 Years")
 					.on("click", function(d, i) {
+						d3.selectAll('#age3button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 3})
 						.style("opacity", 0)
@@ -424,7 +482,10 @@
 					.attr("x", 100)
 					.attr("y", 398)
 					.attr("rx", "5")
+					.attr("id", "age4button")
 					.on("click", function(d, i) {
+						d3.selectAll('#age4button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 4})
 						.style("opacity", 0)
@@ -439,6 +500,8 @@
 					.style("fill", "white")
 					.text("61-80 Years")
 					.on("click", function(d, i) {
+						d3.selectAll('#age4button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 4})
 						.style("opacity", 0)
@@ -452,7 +515,10 @@
 					.attr("x", 100)
 					.attr("y", 431)
 					.attr("rx", "5")
+					.attr("id", "age5button")
 					.on("click", function(d, i) {
+						d3.selectAll('#age5button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 5})
 						.style("opacity", 0)
@@ -467,6 +533,8 @@
 					.style("fill", "white")
 					.text("> 80 Years")
 					.on("click", function(d, i) {
+						d3.selectAll('#age5button') 
+						.attr("fill", "black")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] != 5})
 						.style("opacity", 0)
@@ -481,6 +549,18 @@
 					.attr("y", 466)
 					.attr("rx", "5")
 					.on("click", function(d, i) {
+						d3.selectAll('#age5button') 
+						.attr("fill", "#999999")
+						d3.selectAll('#age4button') 
+						.attr("fill", "#999999")
+						d3.selectAll('#age3button') 
+						.attr("fill", "#999999")
+						d3.selectAll('#age2button') 
+						.attr("fill", "#999999")
+						d3.selectAll('#age1button') 
+						.attr("fill", "#999999")
+						d3.selectAll('#age0button') 
+						.attr("fill", "#999999")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] <= 5})
 						.style("opacity", 1)
@@ -495,6 +575,18 @@
 					.style("fill", "white")
 					.text("Reset")
 					.on("click", function(d, i) {
+						d3.selectAll('#age5button') 
+						.attr("fill", "#999999")
+						d3.selectAll('#age4button') 
+						.attr("fill", "#999999")
+						d3.selectAll('#age3button') 
+						.attr("fill", "#999999")
+						d3.selectAll('#age2button') 
+						.attr("fill", "#999999")
+						d3.selectAll('#age1button') 
+						.attr("fill", "#999999")
+						d3.selectAll('#age0button') 
+						.attr("fill", "#999999")
 						d3.selectAll('#mapcircles')
 						.filter(function(deathagesex) { return deathagesex[2] <= 5})
 						.style("opacity", 1)
